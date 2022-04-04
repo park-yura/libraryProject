@@ -91,7 +91,7 @@ public class UserMenu implements User {
 	public void logout() {
 		userutil = null;
 		
-		System.out.println("====================================");
+		System.out.println("========================================");
 		System.out.println("로그아웃이 완료되었습니다.\n");
 		
 	}
@@ -100,13 +100,7 @@ public class UserMenu implements User {
 	public void printUserList() {
 		System.out.println("\n===[ 회원명단 ]===");
 		System.out.println("전체 회원 수: " + userList.size());
-		for(UserUtil ut : userList) {
-			System.out.println("========================================");
-			System.out.println("이 름\t주민등록번호\t아이디\t비밀번호");
-			System.out.println("========================================");
-			System.out.println(userutil.getName() + "\t" + userutil.getSocialNum() + "\t" + userutil.getId() + "\t" + userutil.getPwd());
-		}
-		System.out.println();
+		System.out.println(Arrays.toString(userList.toArray()));
 	}
 
 	@Override
@@ -138,8 +132,29 @@ public class UserMenu implements User {
 
 	@Override
 	public void userDel() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("===[회원 탈퇴 시스템]===");
+		try {
+			UserUtil ut = readUser(userutil.getId());
+			if(userutil.getId() != "admin") {
+				System.out.print("탈퇴하시겠습니까?(예: y 아니오: n)");
+				String answer = br.readLine();
+					if(answer == "y" || answer == "Y") {
+						System.out.print("비밀번호 입력: ");
+						String pwd = br.readLine();
+						if(!ut.getPwd().equals(pwd)) {
+							System.out.print("비밀번호가 일치하지 않습니다.\n");
+							return;
+						}
+						userList.remove(userutil.getId());
+					} else if (answer == "n" || answer == "N") {
+						System.out.print("회원 탈퇴 시스템을 취소하셨습니다.\n");
+						return;
+					}
+					System.out.println("회원 탈퇴가 완료되었습니다.\n");
+			}
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
 	}
 	
 	private UserUtil readUser(String id) {

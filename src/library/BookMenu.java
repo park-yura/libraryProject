@@ -3,10 +3,11 @@ package library;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class BookMenu implements Book {
-//public void borrow 책 대여
+//public void bookBorrow 책 대여
 //public void bookReturn 책 반납
 //public void printList  책 리스트 출력
 //public void bookUpdate 책 수정
@@ -21,12 +22,15 @@ public class BookMenu implements Book {
 	
 	@Override
 	public void bookBorrow() {
-		System.out.println("도서 대여 시스템입니다.");
-		System.out.println("대여하고자 하는 도서번호를 입력해주세요.");
+		System.out.println("===[도서 대여 시스템]===");
+		
 		try {
-			// 도서 전체 리스트 출력
-			// 도서 번호 선택
-			// 
+			String bNo;
+			System.out.print("대여하고자 하는 도서번호를 입력해주세요.\n");
+			bNo = br.readLine();
+			
+			System.out.print("대여하고자 하는 도서번호를 입력해주세요.");
+			
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
@@ -42,11 +46,7 @@ public class BookMenu implements Book {
 		System.out.println("\n===[ 도서목록 ]===");
 		System.out.println("전체 도서 수: " + bookList.size());
 		for(BookMenu bm : bookList) {
-			System.out.println("========================================");
-			System.out.println("도서번호\t도서명\t출판사\t작가명\t출판년도");
-			System.out.println("========================================");
-			System.out.println(bookutil.getbNo() + "\t" + bookutil.getbTitle() + "\t" + bookutil.getbPublish() 
-			+ "\t" + bookutil.getbAuthor() + "\t" + bookutil.getbYear());
+			System.out.println(Arrays.toString(bookList.toArray()));
 		}
 		System.out.println();
 	}
@@ -63,15 +63,15 @@ public class BookMenu implements Book {
 			BookUtil bu = new BookUtil();
 			int num = 0;
 			while(true) {
-				//로그인하기 전
 				if(bookList.size() != 0) { 
 					do {
 						for(BookMenu bm : bookList) {
-							System.out.println("========================================");
-							System.out.println("도서번호\t도서명\t출판사\t작가명\t출판년도");
-							System.out.println("========================================");
-							System.out.println(bookutil.getbNo() + "\t" + bookutil.getbTitle() + "\t" + bookutil.getbPublish() 
-							+ "\t" + bookutil.getbAuthor() + "\t" + bookutil.getbYear());
+							System.out.println(Arrays.toString(bookList.toArray()));
+							//							System.out.println("========================================");
+//							System.out.println("도서번호\t도서명\t출판사\t작가명\t출판년도");
+//							System.out.println("========================================");
+//							System.out.println(bookutil.getbNo() + "\t" + bookutil.getbTitle() + "\t" + bookutil.getbPublish() 
+//							+ "\t" + bookutil.getbAuthor() + "\t" + bookutil.getbYear());
 							
 						System.out.println("[1]도서번호\t[2]도서명\t[3]출판사\t[4]작가명\t[5]출판년도\t[6]종료\n");
 						System.out.print("수정할 번호를 입력하세요 => \n");
@@ -146,6 +146,8 @@ public class BookMenu implements Book {
 			System.out.print("출판연도: ");
 			bu.setbYear(br.readLine());
 			
+			Book book = new Book(bNo, bTitle, bPublish, bAutor, bYear);
+			System.out.println("책이 등록되었습니다.\n");
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		} 
@@ -154,7 +156,32 @@ public class BookMenu implements Book {
 	
 	@Override
 	public void bookDel() {
-		// TODO Auto-generated method stub
+		System.out.println("===[도서 삭제 시스템]===");
+		try {
+			System.out.println("삭제할 책의 id를 입력하세요");
+			int num = sc.nextInt();
+			for (int i = 0; i < readbookList.size(); i++) {
+
+				if (s == readCarlist.get(i).getId())
+
+					readCarlist.remove(i);
+
+			}
+
+			System.out.println("삭제 되었습니다.");
+
+
+
+			break;
+
+
+
+출처: https://sungwooki.tistory.com/entry/18일-차-도서대여-프로그램-완벽한-저장 [박성우기의 프로그래밍 저장소]
+			}
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+	}
 		
 	}
 
