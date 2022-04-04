@@ -14,7 +14,7 @@ public class UserMenu implements User {
 	//public void logout 로그아웃
 	//public void printUserList  회원 리스트 출력
 	//public void userUpdate 회원 정보 수정
-	//public void userDel 회원 삭제	
+	//public void userDel 회원 탈퇴	
 	
 	// 관리자 아이디 추가시켜줌
 	public UserMenu() {

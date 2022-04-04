@@ -18,8 +18,12 @@ public class BookMenu implements Book {
 	
 	@Override
 	public void borrow() {
+		System.out.println("도서 대여 시스템입니다.");
+		System.out.println("대여하고자 하는 도서번호를 입력해주세요.");
 		try {
-		
+			// 도서 전체 리스트 출력
+			// 도서 번호 선택
+			// 
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
@@ -29,16 +33,49 @@ public class BookMenu implements Book {
 		// TODO Auto-generated method stub
 		
 	}
+	
 	@Override
 	public void bookList() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("\n===[ 도서목록 ]===");
+		System.out.println("전체 도서 수: " + bookList.size());
+		for(BookUtil bu : bookList) {
+			System.out.println("========================================");
+			System.out.println("도서번호\t도서명\t출판사\t작가명\t출판년도");
+			System.out.println("========================================");
+			System.out.println(bookutil.getbNo() + "\t" + bookutil.getbTitle() + "\t" + bookutil.getPublish() 
+			+ "\t" + bookutil.getbAutor() + "\t" + bookutil.getbYear());
+		}
+		System.out.println();
 	}
+	
 	@Override
 	public void bookUpdate() {
-		// TODO Auto-generated method stub
+		if(bookutil == null) {
+			System.out.println("\n수정가능한 도서가 없습니다.");
+			return;
+		}
+		
+		System.out.println("===[ 도서 정보 수정 ]===");
+		try {
+			BookUtil bu = readBook(bookutil.getId());
+			System.out.print("기존 비밀번호를 입력하세요.\n");
+			String pwd = br.readLine();
+			
+			if(!ut.getPwd().equals(pwd)) {
+				System.out.print("비밀번호가 일치하지 않습니다.\n");
+				return;
+			}
+			
+			System.out.print("수정할 정보를 입력하세요.\n");
+			ut.setPwd(br.readLine());
+			
+			System.out.print("도서 정보 수정이 완료되었습니다.\n");
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
 		
 	}
+	
 	@Override
 	public void bookAdd() {
 		System.out.print("\n===[도서 등록]===");
