@@ -1,7 +1,5 @@
 package library;
 
-import java.util.ArrayList;
-
 public class BookUtil {
 
 	private String bNo;		// 도서번호
