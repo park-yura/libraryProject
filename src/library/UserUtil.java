@@ -46,7 +46,7 @@ public class UserUtil {
 	
 	@Override
 	public String toString() {
-		return "[아이디=" + id + ", 비밀번호=" + pwd + ", 이름=" + name + ", 주민등록번호=" + socialNum + "]\n";
+		return "아이디=" + id + ", 비밀번호=" + pwd + ", 이름=" + name + ", 주민등록번호=" + socialNum + "\n";
 	}
 	
 }

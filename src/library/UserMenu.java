@@ -152,6 +152,7 @@ public class UserMenu implements User {
 						return;
 					}
 					System.out.println("회원 탈퇴가 완료되었습니다.\n");
+					System.exit(0);
 			}
 		} catch (Exception e) {
 			System.out.println(e.toString());
