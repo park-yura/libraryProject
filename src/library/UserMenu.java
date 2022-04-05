@@ -1,7 +1,8 @@
 package library;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class UserMenu implements User {
 
@@ -90,8 +91,6 @@ public class UserMenu implements User {
 	@Override
 	public void logout() {
 		userutil = null;
-		
-		System.out.println("========================================");
 		System.out.println("로그아웃이 완료되었습니다.\n");
 		
 	}
@@ -100,7 +99,9 @@ public class UserMenu implements User {
 	public void printUserList() {
 		System.out.println("\n===[ 회원명단 ]===");
 		System.out.println("전체 회원 수: " + userList.size());
-		System.out.println(Arrays.toString(userList.toArray()));
+		System.out.println(userList.toString());
+//		System.out.println("========================================");
+//		System.out.println("[아이디=" + userutil.getId() + ", 비밀번호=" + userutil.getPwd() + ", 이름=" + userutil.getName() + ", 주민등록번호=" + userutil.getSocialNum() + "]");
 	}
 
 	@Override
