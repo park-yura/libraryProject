@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BookMenu implements Book {
-//public void bookBorrow 책 대여
-//public void bookReturn 책 반납
+//public void bookRent 책 대여/반납
 //public void printList  책 리스트 출력
 //public void bookUpdate 책 수정
 //public void bookAdd 책 추가
@@ -19,48 +18,38 @@ public class BookMenu implements Book {
 	Scanner sc = new Scanner(System.in);
 	
 	@Override
-	public void bookBorrow() {
-		System.out.println("===[도서 대여 시스템]===");
-		System.out.println(String.valueOf(bookList));
+	public void bookRent() {
+		while (true) {
+			System.out.println("===[ 도서 대여/반납 시스템 ]===");
+			System.out.println(String.valueOf(bookList));
 			
-		if(bookList == null) {
-			System.out.println("대여 가능한 도서가 없습니다.\n");
-			System.out.println();
-			return;
-			}
-			
-		System.out.print("대여할 도서번호를 입력해주세요.\n");
-			String no = sc.nextLine();
-			
-			for(int i = 0; i < bookList.size(); i++) {
-				if (no != bookList.get(i).getbNo()) { 
-					if (bookList.get(i).isbRent()) {
-						System.out.println("이미 대여 중인 도서입니다.\n");
-					} else if (!bookList.get(i).isbRent()) {
-						System.out.println("대여 완료되었습니다.\n");
-						bookList.get(i).setbRent(true);
-					}
-				}			
-			}
-	}
-	
-	@Override
-	public void bookReturn() {
-		System.out.print("반납할 도서번호를 입력해주세요.\n");
-		String no = sc.nextLine();
-		
-		for(int i = 0; i < bookList.size(); i++) {
-			if (no == bookList.get(i).getbNo()) { 
-				if (!bookList.get(i).isbRent()) {
-					System.out.println("대여 중이 아닙니다.\n");
-				} else if (bookList.get(i).isbRent()) {
-					System.out.println("반납 완료되었습니다.\n");
-					bookList.get(i).setbRent(false);
-				}
-			} 
-			System.out.println("반납 가능한 도서가 없습니다.");
-		}
-	}
+            System.out.println("해당 도서 번호를 입력해주세요");
+            String num = sc.nextLine();
+            int cnt = 0;
+            for (int i = 0; i < bookList.size(); i++) {
+                if (num.equals(bookList.get(i).getbNo())) {
+                    cnt++;
+                    boolean bStatus = bookList.get(i).isbRent();
+ 
+                    if (bStatus) {
+                    	bStatus = false;
+                        System.out.println("도서가 반납되었습니다.");
+                    } else {
+                    	bStatus = true;
+                        System.out.println("도서가 대여되었습니다.");
+                    }
+                    bookList.get(i).setbRent(bStatus);
+                    break;
+                }
+            } 
+            if (cnt == 0) {
+                System.out.println("해당 도서가 존재하지 않습니다. 도서 번호를 다시 입력하세요.");
+            } else {
+                break;
+            }
+        } 
+    }
+
 	
 	@Override
 	public void printBookList() {
@@ -134,6 +123,7 @@ public class BookMenu implements Book {
 							break;
 						}
 					}
+					break;
 					
 				case 3:
 					

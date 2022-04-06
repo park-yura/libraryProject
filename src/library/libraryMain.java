@@ -106,11 +106,11 @@ public class libraryMain {
 			} while(num < 1 || num > 6);
 			switch(num) {
 			case 1:
-				book.bookBorrow();
+				book.bookRent();
 				break;
 			
 			case 2:
-				book.bookReturn();
+				book.bookRent();
 				break;
 				
 			case 3:
