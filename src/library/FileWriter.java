@@ -6,7 +6,7 @@ import libraryUtil.FileClose;
 public class FileWriter {
 	public static void write() {
 		
-		//BookUtil booklist = new BookUtil(Book.toString());
+		BookUtil booklist = new BookUtil(Book.toString());
 	
 		FileOutputStream fos = null;
 		ObjectOutputStream oos = null;
@@ -15,7 +15,7 @@ public class FileWriter {
 			fos = new FileOutputStream("LibraryProject/booklist.txt");
 			oos = new ObjectOutputStream(fos);
 			
-		//	oos.writeObject(booklist); //묵시적 형변환
+			oos.writeObject(booklist); //묵시적 형변환
 			
 			System.out.println("object.txt 저장완료...");
 			
