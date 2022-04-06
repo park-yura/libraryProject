@@ -2,7 +2,7 @@ package library;
 
 import java.util.Scanner;
 
-public class libraryMain {
+public class LibraryMain {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);

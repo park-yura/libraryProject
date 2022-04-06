@@ -9,9 +9,7 @@ public class BookUtil {
 	private String bYear;	// 출판연도
 	private boolean bRent;	// 대여 여부
 	
-	public BookUtil() {
-		
-	}
+
 
 	public String getbNo() {
 		return bNo;
