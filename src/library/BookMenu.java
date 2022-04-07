@@ -1,9 +1,7 @@
 package library;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 public class BookMenu implements Book {
 //public void bookRent 책 대여/반납
@@ -82,10 +80,10 @@ public class BookMenu implements Book {
 				int i = 0;
 				do {
 				System.out.println(String.valueOf(bookList));
-				
-				System.out.println("\n[1]도서번호 [2]도서명 [3]출판사 [4]작가명 [5]출판년도 [6]메인페이지");
+				System.out.println("[1]도서명 [2]출판사 [3]작가명 [4]출판년도 [5]메인페이지\n");
 				System.out.print("해당 도서의 수정할 목록의 번호를 입력하세요 => ");
 				num = sc.nextInt();
+				
 				} while(num < 1 || num > 6);
 				switch (num) {
 				
@@ -96,33 +94,17 @@ public class BookMenu implements Book {
 	
 					for (i = 0; i < bookList.size(); i++) {
 						if(bookList.get(i).getbNo().equals(bNo)) {
-							System.out.print("새로운 도서번호를 입력하세요 => ");
-							String bNo1 = br.readLine();
-							bookList.get(i).setbTitle(bNo1);
-							System.out.println("변경되었습니다.");
-							flag = true;
-						}
-					}
-					break;
-					
-				case 2:
-					
-					System.out.print("수정할 도서번호를 입력하세요 => ");
-					bNo = br.readLine();
-					
-					for (i = 0; i < bookList.size(); i++) {
-						if(bookList.get(i).getbNo().equals(bNo)) {
 							System.out.print("새로운 도서명을 입력하세요.");
 							String bTitle = br.readLine();
 							bookList.get(i).setbTitle(bTitle);
 							System.out.println("변경되었습니다.");
 							flag = true;
-							break;
+							
 						}
 					}
 					break;
 					
-				case 3:
+				case 2:
 					
 					System.out.print("수정할 도서번호를 입력하세요 => ");
 					bNo = br.readLine();
@@ -135,11 +117,12 @@ public class BookMenu implements Book {
 							bookList.get(i).setbTitle(bPublic);
 							System.out.println("변경되었습니다.");
 							flag = true;
+							
 						}
 					}
 					break;
 					
-				case 4:
+				case 3:
 					
 					System.out.print("수정할 도서번호를 입력하세요 => ");
 					bNo = br.readLine();
@@ -156,7 +139,7 @@ public class BookMenu implements Book {
 					}
 					break;
 					
-				case 5:
+				case 4:
 					
 					System.out.print("수정할 도서번호를 입력하세요 => ");
 					bNo = br.readLine();
@@ -173,7 +156,7 @@ public class BookMenu implements Book {
 					}
 					break;
 					
-				case 6:
+				case 5:
 					return;
 					}
 				break;
@@ -184,81 +167,6 @@ public class BookMenu implements Book {
 			System.out.println(e.toString());
 	}
 }		
-		
-		/*
-		 * 
-		
-		
-		System.out.println("===[ 도서 정보 수정 ]===");
-		try {
-//			BookUtil bu = new BookUtil();
-			BookUtil bu = readBook(bookutil.getbNo());
-			int num = 0;
-			while(true) {
-				if(bookList.size() != 0) { 
-					do {
-						System.out.println(String.valueOf(bookList));
-							
-						System.out.print("수정할 도서번호를 입력하세요.\n");
-						String bNo = br.readLine();
-						
-						System.out.println("[1]도서번호 [2]도서명 [3]출판사 [4]작가명 [5]출판년도 [6]메인페이지\n");
-						System.out.print("해당 도서의 수정할 목록의 번호를 입력하세요 => \n");
-						num = sc.nextInt();
-						
-					} while(num < 1 || num > 6);
-					
-					switch (num) {
-					case 1: 
-						
-						
-						System.out.print("수정할 도서번호를 입력하세요.\n");
-						String bNo = br.readLine();
-						
-						if(!bu.getbNo().equals(bNo)) {
-							System.out.print("도서번호가 일치하지 않습니다.\n");
-							return;
-						}
-						
-						System.out.print("변경할 도서번호를 입력하세요.\n");
-						bu.setbNo(br.readLine());
-						
-						System.out.print("도서번호 수정이 완료되었습니다.\n");
-						break;
-					
-					case 2:
-//						
-//						System.out.print("도서명: ");
-//						bookList.set(2, )
-//						bu.setbTitle(br.readLine());
-//						System.out.print("도서명 수정이 완료되었습니다.\n");
-//						break;
-						
-					case 3: 
-						System.out.print("출판사: ");
-						bu.setbPublish(br.readLine());
-						System.out.print("출판사 수정이 완료되었습니다.\n");
-						break;
-					case 4: 
-						System.out.print("작가명: ");
-						bu.setbAuthor(br.readLine());
-						System.out.print("작가명 수정이 완료되었습니다.\n");
-						break;
-					case 5: 
-						System.out.print("출판년도: ");
-						bu.setbYear(br.readLine());
-						System.out.print("출판연도 수정이 완료되었습니다.\n");
-						break;
-					case 6: 
-						return;
-					}
-					
-					}
-				}
-			} catch (Exception e) {
-				System.out.println(e.toString());
-			}
-			*/
 	
 
 	@Override
@@ -294,14 +202,18 @@ public class BookMenu implements Book {
 	
 	@Override
 	public void bookDel() {
+		try {
+			
 		System.out.println("===[도서 삭제 시스템]===");
-		 while (true) {
-	            System.out.println("삭제할 도서번호를 입력해주세요");
-	            String num = sc.nextLine();
+		 
+		while (true) {
+			System.out.println(String.valueOf(bookList));
+	            System.out.print("삭제할 도서번호를 입력해주세요 => ");
+	            String bNo = br.readLine();
 	            int cnt = 0;
 
 	            for (int i = 0; i < bookList.size(); i++) {
-	                if (num.equals(bookList.get(i).getbNo())) {
+	                if (bookList.get(i).getbNo().equals(bNo)) {
 	                    bookList.remove(i);
 	                    cnt++;
 	                    System.out.println("도서 삭제 완료");
@@ -316,8 +228,10 @@ public class BookMenu implements Book {
 	                
 	            }
 	        } 
-	    }
-
+	} catch (Exception e) {
+		System.out.println(e.toString());
+}
+}	
 	
 	private BookUtil readBook(String bNo) {
 		BookUtil bu = null;
