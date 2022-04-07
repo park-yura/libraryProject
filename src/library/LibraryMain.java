@@ -1,8 +1,9 @@
 package library;
 
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
-public class LibraryMain {
+public class LibraryMain  {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -37,19 +38,23 @@ public class LibraryMain {
 			
 		// 관리자 계정으로 로그인한 경우	
 		} else if(user.loginMember().getId() == "admin") {
+				
 			do {
 				System.out.println("[1]도서관리\t[2]회원관리\t[3]로그아웃\t[4]종료");
 				System.out.print("이용하고자 하는 서비스 번호를 입력하세요 => ");
 				num = sc.nextInt();
+				System.out.println();
 			} while (num < 1 || num > 4);
 			
 			switch (num) {
-			case 1: do {
-				System.out.println("[1]도서등록\t[2]도서수정\t[3]도서삭제\t[4]도서조회\t[5]메인페이지");
+			case 1: 
+					
+				do {
+				System.out.println("[1]도서등록\t[2]도서수정\t[3]도서삭제\t[4]도서조회\t[5]메인페이지\t[6]종료");
 				System.out.print("이용하고자 하는 서비스 번호를 입력하세요 => ");
 				num=sc.nextInt();
 				
-			} while (num < 1 || num > 5);
+			} while (num < 1 || num > 6);
 			
 			switch (num) {
 			
@@ -71,10 +76,13 @@ public class LibraryMain {
 					
 				case 5:
 					break;
-				} 
-				break;
-		
-		
+					
+				case 6:
+					book.fileSave(args);
+					break;
+			} 
+			break;
+
 			case 2: do {
 				System.out.println("[1]회원 리스트\t[2]메인페이지");
 				System.out.print("이용하고자 하는 서비스 번호를 입력하세요 => ");

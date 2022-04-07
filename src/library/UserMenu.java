@@ -81,7 +81,7 @@ public class UserMenu implements User {
 					return;
 				}
 			}
-			System.out.println("아이디 또는 패스워드가 일치하지 않습니다.\n");
+			System.out.println("아이디 또는 패스워드가 일치하지 않습니다.");
 			
 		}catch (Exception e) {
 			System.out.println(e.toString());

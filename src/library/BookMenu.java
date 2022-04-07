@@ -172,7 +172,7 @@ public class BookMenu implements Book {
 	@Override
 	public void bookAdd() {
 		System.out.println("\n===[도서 등록]===");
-
+		
 		try {
 			BookUtil bu = new BookUtil();
 			System.out.print("도서번호: ");
@@ -232,6 +232,23 @@ public class BookMenu implements Book {
 		System.out.println(e.toString());
 }
 }	
+	
+	public void fileSave(String tmp[]) {
+		String s = System.getProperty("user.dir");
+		System.out.println(s);
+		StringBuffer FileName = new StringBuffer(s+"output.txt"); 
+		PrintWriter out;
+		
+		try {
+			out=new PrintWriter(new FileWriter(FileName.toString(), false));
+			for(int i = 0; i<20; i++) {
+				out.println(tmp[i]);
+			}
+			out.close();
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	private BookUtil readBook(String bNo) {
 		BookUtil bu = null;
