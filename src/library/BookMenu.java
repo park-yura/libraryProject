@@ -232,23 +232,29 @@ public class BookMenu implements Book {
 		System.out.println(e.toString());
 }
 }	
-	
-	public void fileSave(String tmp[]) {
-		String s = System.getProperty("user.dir");
-		System.out.println(s);
-		StringBuffer FileName = new StringBuffer(s+"output.txt"); 
-		PrintWriter out;
-		
-		try {
-			out=new PrintWriter(new FileWriter(FileName.toString(), false));
-			for(int i = 0; i<20; i++) {
-				out.println(tmp[i]);
-			}
-			out.close();
-		} catch(IOException e) {
-			e.printStackTrace();
+	public void fileSave() {
+	try {
+		BookUtil bu = new BookUtil();
+		// 1. 파일 객체 생성
+		File file = new File("d:\\JAVA\\writeFile.txt");
+		// 2. 파일 존재여부 체크 및 생성
+		if (!file.exists()) {
+		file.createNewFile();
 		}
-	}
+		// 3. Buffer를 사용해서 File에 write할 수 있는 BufferedWriter 생성
+		FileWriter fw = new FileWriter(file);
+		BufferedWriter writer = new BufferedWriter(fw);
+		// 4. 파일에 쓰기
+		writer.write("도서번호=" + bu.getbNo() + ", 도서명=" + bu.getbTitle() + ", 출판사=" + bu.getbPublish() + ", 작가명=" + bu.getbAuthor()
+				+ ", 출판년도=" + bu.getbYear() + ", 대여여부=" + bu.isbRent());
+		// 5. BufferedWriter close
+		writer.close();
+		} catch (IOException e) {
+		e.printStackTrace();
+		}
+		}
+		
+
 	
 	private BookUtil readBook(String bNo) {
 		BookUtil bu = null;

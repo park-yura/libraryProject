@@ -78,7 +78,7 @@ public class LibraryMain  {
 					break;
 					
 				case 6:
-					book.fileSave(args);
+					book.fileSave();
 					break;
 			} 
 			break;
