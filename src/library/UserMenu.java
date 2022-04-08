@@ -17,7 +17,7 @@ public class UserMenu implements User {
 	//public void userUpdate 회원 정보 수정
 	//public void userDel 회원 탈퇴	
 	
-	// 관리자 아이디 추가시켜줌
+	// 관리자 아이디 입력시켜서 관리자 로그인
 	public UserMenu() {
 		UserUtil ut = new UserUtil();
 		ut.setName("관리자");
@@ -29,7 +29,7 @@ public class UserMenu implements User {
 	
 	@Override
 	public void join() {
-		System.out.println("\n회원가입을 시작합니다.");
+		System.out.println("\n=====[ 회원가입 ]=====");
 		try {
 			UserUtil ut = new UserUtil();
 			
@@ -63,7 +63,7 @@ public class UserMenu implements User {
 
 	@Override
 	public void login() {
-		System.out.println("\n===[ 로그인 ]===");
+		System.out.println("\n=====[ 로그인 ]=====");
 		String id, pwd;
 		
 		try {
@@ -97,11 +97,13 @@ public class UserMenu implements User {
 
 	@Override
 	public void printUserList() {
-		System.out.println("\n===[ 회원명단 ]===");
+		System.out.println("\n=====[ 회원명단 ]=====");
 		System.out.println("전체 회원 수: " + userList.size());
-		System.out.println(userList.toString());
-//		System.out.println("========================================");
-//		System.out.println("[아이디=" + userutil.getId() + ", 비밀번호=" + userutil.getPwd() + ", 이름=" + userutil.getName() + ", 주민등록번호=" + userutil.getSocialNum() + "]");
+
+		for(UserUtil data: userList) {
+			System.out.println("[ " + data + " ]\n");
+			
+		} 
 	}
 
 	@Override
@@ -111,10 +113,10 @@ public class UserMenu implements User {
 			return;
 		}
 		
-		System.out.println("===[ 비밀번호 수정 ]===");
+		System.out.println("\n=====[ 비밀번호 수정 ]=====");
 		try {
 			UserUtil ut = readUser(userutil.getId());
-			System.out.print("기존 비밀번호를 입력하세요.\n");
+			System.out.print("기존 비밀번호를 입력하세요. => \n");
 			String pwd = br.readLine();
 			
 			if(!ut.getPwd().equals(pwd)) {
@@ -133,13 +135,13 @@ public class UserMenu implements User {
 
 	@Override
 	public void userDel() {
-		System.out.println("===[회원 탈퇴 시스템]===");
+		System.out.println("\n=====[ 회원 탈퇴 ]=====");
 		try {
 			UserUtil ut = readUser(userutil.getId());
 			if(userutil.getId() != "admin") {
-				System.out.print("탈퇴하시겠습니까?(예: y 아니오: n)");
+				System.out.print("탈퇴하시겠습니까?(예: y 아니오: n) => ");
 				String answer = br.readLine();
-					if(answer == "y" || answer == "Y") {
+					if(answer.equals("y") || answer.equals("Y")) {
 						System.out.print("비밀번호 입력: ");
 						String pwd = br.readLine();
 						if(!ut.getPwd().equals(pwd)) {
@@ -147,10 +149,16 @@ public class UserMenu implements User {
 							return;
 						}
 						userList.remove(userutil.getId());
-					} else if (answer == "n" || answer == "N") {
+					} else if (answer.equals("n") || answer.equals("N")) {
 						System.out.print("회원 탈퇴 시스템을 취소하셨습니다.\n");
+						System.out.println();
+						return;
+					} else {
+						System.out.println("y나 n을 입력해주세요.\n");
+						System.out.println();
 						return;
 					}
+			
 					System.out.println("회원 탈퇴가 완료되었습니다.\n");
 					System.exit(0);
 			}

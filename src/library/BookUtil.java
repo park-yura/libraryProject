@@ -61,8 +61,7 @@ public class BookUtil {
 
 	@Override
 	public String toString() {
-		return ("도서번호=" + bNo + ", 도서명=" + bTitle + ", 출판사=" + bPublish + ", 작가명=" + bAuthor
-				+ ", 출판년도=" + bYear + ", 대여여부=" + bRent+ "\n");
+		return ("도서번호=" + bNo + ", 도서명=" + bTitle + ", 출판사=" + bPublish + ", 작가명=" + bAuthor+ ", 출판년도=" + bYear + ", 대여여부=" + bRent);
 	}
 	
 	

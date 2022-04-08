@@ -16,11 +16,12 @@ public class BookMenu implements Book {
 	private boolean flag = true;
 	Scanner sc = new Scanner(System.in);
 	
+	//도서 대여/반납 시스템
 	@Override
-	public void bookRent() {
+	public void bookRent() { 
 		while (true) {
-			System.out.println("===[ 도서 대여/반납 시스템 ]===");
-			System.out.println(String.valueOf(bookList));
+			System.out.println("\n=====[ 도서 대여/반납 ]=====");
+			System.out.println(String.valueOf(bookList)); //도서 정보 조회
 			
             System.out.println("해당 도서 번호를 입력해주세요");
             String num = sc.nextLine();
@@ -49,16 +50,19 @@ public class BookMenu implements Book {
         } 
     }
 
-	
+	// 도서 조회 시스템
 	@Override
 	public void printBookList() {
-		System.out.println("\n===[ 도서목록 ]===");
+		System.out.println("\n=====[ 도서목록 ]=====");
 		System.out.println("전체 도서 수: " + bookList.size());
-		System.out.println(String.valueOf(bookList));
+		for(BookUtil data: bookList) {
+			System.out.println("[ " + data + " ]\n");
+		}
 		
 		System.out.println();
 	}
 	
+	// 도서 수정 시스템
 	@Override
 	public void bookUpdate() {
 		
@@ -70,7 +74,7 @@ public class BookMenu implements Book {
 
 		try {
 			
-			System.out.println("\n===[ 도서 정보 수정 ]===");
+			System.out.println("\n=====[ 도서 정보 수정 ]=====");
 			
 			while(true) {
 				
@@ -78,9 +82,11 @@ public class BookMenu implements Book {
 			if(bookList.size() != 0) { 
 				int num = 0;
 				int i = 0;
+				for(BookUtil data: bookList) {
+					System.out.println("[ " + data + " ]\n");
+				}
 				do {
-				System.out.println(String.valueOf(bookList));
-				System.out.println("[1]도서명 [2]출판사 [3]작가명 [4]출판년도 [5]메인페이지\n");
+				System.out.println("\n[1]도서명  [2]출판사  [3]작가명  [4]출판년도  [5]메인페이지");
 				System.out.print("해당 도서의 수정할 목록의 번호를 입력하세요 => ");
 				num = sc.nextInt();
 				
@@ -94,10 +100,10 @@ public class BookMenu implements Book {
 	
 					for (i = 0; i < bookList.size(); i++) {
 						if(bookList.get(i).getbNo().equals(bNo)) {
-							System.out.print("새로운 도서명을 입력하세요.");
+							System.out.print("새로운 도서명을 입력하세요 => ");
 							String bTitle = br.readLine();
 							bookList.get(i).setbTitle(bTitle);
-							System.out.println("변경되었습니다.");
+							System.out.println("변경되었습니다.\n");
 							flag = true;
 							
 						}
@@ -114,7 +120,7 @@ public class BookMenu implements Book {
 						if(bookList.get(i).getbNo().equals(bNo)) {
 							System.out.print("새로운 출판사명을 입력하세요 => ");
 							String bPublic = br.readLine();
-							bookList.get(i).setbTitle(bPublic);
+							bookList.get(i).setbPublish(bPublic);
 							System.out.println("변경되었습니다.");
 							flag = true;
 							
@@ -131,10 +137,11 @@ public class BookMenu implements Book {
 					for (i = 0; i < bookList.size(); i++) {
 						if(bookList.get(i).getbNo().equals(bNo)) {
 							System.out.print("새로운 작가명을 입력하세요 => ");
-							String bAutor = br.readLine();
-							bookList.get(i).setbTitle(bAutor);
+							String bAuthor = br.readLine();
+							bookList.get(i).setbAuthor(bAuthor);
 							System.out.println("변경되었습니다.");
 							flag = true;
+							
 						}
 					}
 					break;
@@ -149,9 +156,10 @@ public class BookMenu implements Book {
 						if(bookList.get(i).getbNo().equals(bNo)) {
 							System.out.print("새로운 출판년도를 입력하세요 => ");
 							String bYear = br.readLine();
-							bookList.get(i).setbTitle(bYear);
+							bookList.get(i).setbYear(bYear);
 							System.out.println("변경되었습니다.");
 							flag = true;
+							
 						}
 					}
 					break;
@@ -171,10 +179,12 @@ public class BookMenu implements Book {
 
 	@Override
 	public void bookAdd() {
-		System.out.println("\n===[도서 등록]===");
+		System.out.println("\n=====[ 도서 등록 ]=====");
 		
-		try {
+		try {			
 			BookUtil bu = new BookUtil();
+			FileWriter fw = new FileWriter("BookInfo.txt", false);
+
 			System.out.print("도서번호: ");
 			bu.setbNo(br.readLine());
 			
@@ -189,26 +199,32 @@ public class BookMenu implements Book {
 			bu.setbPublish(br.readLine());
 			System.out.print("작가명: ");
 			bu.setbAuthor(br.readLine());
-			System.out.print("출판연도: ");
+			System.out.print("출판년도: ");
 			bu.setbYear(br.readLine());
+			
+			fw.write("도서번호: " + bu.getbNo() + ", 도서명: " + bu.getbTitle() + ", 출판사: " + bu.getbTitle() + ", 작가명: " + bu.getbAuthor() + ", 출판년도: " + bu.getbYear()+"\r\n");
+	
+			fw.close();
 			
 			bookList.add(bu);
 			System.out.println("책이 등록되었습니다.\n");
-		} catch (Exception e) {
-			System.out.println(e.toString());
-		} 
+			}catch(IOException e) {
+				e.printStackTrace();
+			}
 		
-	}
+}
 	
 	@Override
 	public void bookDel() {
 		try {
 			
-		System.out.println("===[도서 삭제 시스템]===");
+		System.out.println("\n======[ 도서 삭제 ]======");
 		 
 		while (true) {
-			System.out.println(String.valueOf(bookList));
-	            System.out.print("삭제할 도서번호를 입력해주세요 => ");
+			for(BookUtil data: bookList) {
+				System.out.println("[ " + data + " ]\n");
+			}
+	            System.out.print("\n삭제할 도서번호를 입력해주세요 => ");
 	            String bNo = br.readLine();
 	            int cnt = 0;
 
@@ -216,13 +232,13 @@ public class BookMenu implements Book {
 	                if (bookList.get(i).getbNo().equals(bNo)) {
 	                    bookList.remove(i);
 	                    cnt++;
-	                    System.out.println("도서 삭제 완료");
+	                    System.out.println("도서 삭제가 완료되었습니다.\n");
 	                    break;
 	                }
 	            } 
 	            
 	            if (cnt == 0) {
-	                System.out.println("해당 도서가 존재하지 않습니다. 도서 번호를 다시 입력하세요.");
+	                System.out.println("해당 도서가 존재하지 않습니다. 도서 번호를 다시 입력하세요.\n");
 	            } else {
 	                break;
 	                
@@ -232,30 +248,8 @@ public class BookMenu implements Book {
 		System.out.println(e.toString());
 }
 }	
-	public void fileSave() {
-	try {
-		BookUtil bu = new BookUtil();
-		// 1. 파일 객체 생성
-		File file = new File("d:\\JAVA\\writeFile.txt");
-		// 2. 파일 존재여부 체크 및 생성
-		if (!file.exists()) {
-		file.createNewFile();
-		}
-		// 3. Buffer를 사용해서 File에 write할 수 있는 BufferedWriter 생성
-		FileWriter fw = new FileWriter(file);
-		BufferedWriter writer = new BufferedWriter(fw);
-		// 4. 파일에 쓰기
-		writer.write("도서번호=" + bu.getbNo() + ", 도서명=" + bu.getbTitle() + ", 출판사=" + bu.getbPublish() + ", 작가명=" + bu.getbAuthor()
-				+ ", 출판년도=" + bu.getbYear() + ", 대여여부=" + bu.isbRent());
-		// 5. BufferedWriter close
-		writer.close();
-		} catch (IOException e) {
-		e.printStackTrace();
-		}
-		}
-		
-
 	
+
 	private BookUtil readBook(String bNo) {
 		BookUtil bu = null;
 		

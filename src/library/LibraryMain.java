@@ -15,6 +15,7 @@ public class LibraryMain  {
 			//로그인하기 전
 			if(user.loginMember() == null) { 
 				do {
+					System.out.println("=====KOPO 도서관에 오신 것을 환영합니다=====");
 					System.out.println("[1]로그인 \t[2]회원가입\t[3]종료");
 					System.out.print("이용하고자 하는 서비스 번호를 입력하세요 => ");
 					num = sc.nextInt();
@@ -77,9 +78,9 @@ public class LibraryMain  {
 				case 5:
 					break;
 					
-				case 6:
-					book.fileSave();
-					break;
+//				case 6:
+//					book.fileSave();
+//					break;
 			} 
 			break;
 
