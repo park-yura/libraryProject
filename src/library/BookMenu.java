@@ -21,7 +21,9 @@ public class BookMenu implements Book {
 	public void bookRent() { 
 		while (true) {
 			System.out.println("\n=====[ 도서 대여/반납 ]=====");
-			System.out.println(String.valueOf(bookList)); //도서 정보 조회
+			for(BookUtil data: bookList) {
+				System.out.println("[ " + data + " ]\n");
+			} //도서 정보 조회
 			
             System.out.println("해당 도서 번호를 입력해주세요");
             String num = sc.nextLine();
@@ -44,6 +46,7 @@ public class BookMenu implements Book {
             } 
             if (cnt == 0) {
                 System.out.println("해당 도서가 존재하지 않습니다. 도서 번호를 다시 입력하세요.");
+                return;
             } else {
                 break;
             }
@@ -183,7 +186,7 @@ public class BookMenu implements Book {
 		
 		try {			
 			BookUtil bu = new BookUtil();
-			FileWriter fw = new FileWriter("BookInfo.txt", false);
+			FileWriter fw = new FileWriter("BookInfo.txt", true);
 
 			System.out.print("도서번호: ");
 			bu.setbNo(br.readLine());
@@ -202,7 +205,7 @@ public class BookMenu implements Book {
 			System.out.print("출판년도: ");
 			bu.setbYear(br.readLine());
 			
-			fw.write("도서번호: " + bu.getbNo() + ", 도서명: " + bu.getbTitle() + ", 출판사: " + bu.getbTitle() + ", 작가명: " + bu.getbAuthor() + ", 출판년도: " + bu.getbYear()+"\r\n");
+			fw.write("도서번호: " + bu.getbNo() + ", 도서명: " + bu.getbTitle() + ", 출판사: " + bu.getbPublish() + ", 작가명: " + bu.getbAuthor() + ", 출판년도: " + bu.getbYear()+"\r\n");
 	
 			fw.close();
 			

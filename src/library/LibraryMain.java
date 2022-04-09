@@ -51,7 +51,7 @@ public class LibraryMain  {
 			case 1: 
 					
 				do {
-				System.out.println("[1]도서등록\t[2]도서수정\t[3]도서삭제\t[4]도서조회\t[5]메인페이지\t[6]종료");
+				System.out.println("[1]도서등록\t[2]도서수정\t[3]도서삭제\t[4]도서조회\t[5]메인페이지");
 				System.out.print("이용하고자 하는 서비스 번호를 입력하세요 => ");
 				num=sc.nextInt();
 				
@@ -78,9 +78,6 @@ public class LibraryMain  {
 				case 5:
 					break;
 					
-//				case 6:
-//					book.fileSave();
-//					break;
 			} 
 			break;
 
@@ -102,13 +99,17 @@ public class LibraryMain  {
 			case 3: 
 				user.logout();
 				break;
+				
+			case 4:
+				System.out.println("프로그램이 종료됩니다.");
+				System.exit(0);
 			}
 		}
 		
 		// 일반 사용자 로그인
 		else {
 			do {
-				System.out.println("[1]도서대여\t[2]도서반납\t[3]도서조회\t[4]비밀번호 변경\t[5]로그아웃\t[6]탈퇴");
+				System.out.println("\n[1]도서대여\t[2]도서반납\t[3]도서조회\t[4]비밀번호 변경\t[5]로그아웃\t[6]탈퇴");
 				System.out.print("이용하고자 하는 서비스 번호를 입력하세요 => ");
 				num = sc.nextInt();
 				

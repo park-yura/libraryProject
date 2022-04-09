@@ -2,10 +2,11 @@ package library;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
+import java.util.*;
 
 public class UserMenu implements User {
 
+	Scanner sc = new Scanner(System.in);
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	private ArrayList<UserUtil> userList = new ArrayList<UserUtil>();
 	private UserUtil userutil;
@@ -38,11 +39,12 @@ public class UserMenu implements User {
 			
 			System.out.print("주민등록번호: ");
 			ut.setSocialNum(br.readLine());
-			if(readUser(ut.getSocialNum()) != null) {
+			
+			if (readUser(ut.getSocialNum()) != null) {
 				System.out.println("이미 등록된 사용자입니다.\n");
 				return;
 			}
-			
+				
 			System.out.print("아이디: ");
 			ut.setId(br.readLine());
 			if(readUser(ut.getId()) != null) {
@@ -54,7 +56,7 @@ public class UserMenu implements User {
 			ut.setPwd(br.readLine());
 			
 			userList.add(ut);
-			System.out.println("회원가입이 완료되었습니다.\n");
+			System.out.println("회원가입이 완료되었습니다.");
 			
 		} catch (Exception e) {
 			System.out.println(e.toString());
@@ -116,7 +118,7 @@ public class UserMenu implements User {
 		System.out.println("\n=====[ 비밀번호 수정 ]=====");
 		try {
 			UserUtil ut = readUser(userutil.getId());
-			System.out.print("기존 비밀번호를 입력하세요. => \n");
+			System.out.print("기존 비밀번호를 입력하세요 => ");
 			String pwd = br.readLine();
 			
 			if(!ut.getPwd().equals(pwd)) {
@@ -124,7 +126,7 @@ public class UserMenu implements User {
 				return;
 			}
 			
-			System.out.print("변경할 비밀번호를 입력하세요.\n");
+			System.out.print("변경할 비밀번호를 입력하세요 => ");
 			ut.setPwd(br.readLine());
 			
 			System.out.print("비밀번호 수정이 완료되었습니다.\n");
