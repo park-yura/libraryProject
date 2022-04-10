@@ -35,12 +35,12 @@
 
 #### 2) 도서관리
 - 도서 조회
+ : 도서관 내 등록한 모든 도서 리스트 출력 및 대여/반납여부 확인 가능 
 - 도서 대여/반납 
  : 도서 번호로 구분하여 도서 대여/반납을 진행함
  
 ### 도서관리 프로그램 동영상
-
-<iframe width="650" height="400" src="https://www.youtube.com/embed/M9_uiYHgWwU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br><br>
+<iframe width="650" height="400" src="https://www.youtube.com/embed/A23QIT4h96I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br><br>
 
 
 ### 프로그램 구현 후기
@@ -50,6 +50,8 @@
 
 
 ### 관련 링크
+[도서관리프로그램 소스코드] (https://park-yura.github.io/libraryProject/)
+
 [My GitHub mainpage](https://park-yura.github.io/)
 
 [My YouTube](https://www.youtube.com/channel/UCKONvJsn1CYFGlaQ75ryEdg/featured)
