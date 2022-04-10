@@ -50,8 +50,8 @@
 
 
 ### 관련 링크
-[도서관리프로그램 소스코드] (https://park-yura.github.io/libraryProject/)
+[도서관리프로그램 소스코드](https://park-yura.github.io/libraryProject/)<br>
 
-[My GitHub mainpage](https://park-yura.github.io/)
+[My GitHub mainpage](https://park-yura.github.io/)<br>
 
 [My YouTube](https://www.youtube.com/channel/UCKONvJsn1CYFGlaQ75ryEdg/featured)
